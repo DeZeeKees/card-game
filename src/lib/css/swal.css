@@ -1,0 +1,23 @@
+.error-button {
+    background-color: #d9534f !important;
+    border-color: #d43f3a !important;
+    color: #fff !important;
+}
+
+.error-button:focus {
+    box-shadow: 0 0 0 3px rgba(212, 63, 58, 0.5) !important;
+}
+
+.success-button {
+    background-color: #5cb85c !important;
+    border-color: #4cae4c !important;
+    color: #fff !important;
+}
+
+.success-button:focus {
+    box-shadow: 0 0 0 3px rgba(76, 174, 76, 0.5) !important;
+}
+
+.myswal-font {
+    font-family: 'Roboto' !important;
+}
