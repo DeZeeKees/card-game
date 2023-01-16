@@ -4,10 +4,8 @@ import path from 'path';
 
 const config = defineConfig({
 	plugins: [sveltekit()],
-	resolve: {
-		alias: {
-			
-		}
+	ssr: {
+		noExternal: ['three', 'troika-three-text']
 	}
 });
 

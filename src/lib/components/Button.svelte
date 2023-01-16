@@ -1,17 +1,17 @@
 {#if type === 'button'}
-    <button class="button" on:click={onClick}>
+    <button class="button" style={Style} on:click={onClick}>
         <slot />
     </button>
 {:else if type === 'link'}
-    <a class="button" href={href || '#'} on:click={onClick}>
+    <a class="button" style={Style} href={href || '#'} on:click={onClick}>
         <slot />
     </a>
 {:else if type === 'link-nobg'}
-    <a class="link" href={href || '#'} on:click={onClick}>
+    <a class="link" style={Style} href={href || '#'} on:click={onClick}>
         <slot />
     </a>
 {:else if type === 'submit'}
-    <button class="button" type="submit" on:click={onClick}>
+    <button class="button" style={Style} type="submit" on:click={onClick}>
         <slot />
     </button>
 {/if}
@@ -20,6 +20,7 @@
     export let type = 'button';
     export let href = null;
     export let onClick = null;
+    export let Style = null;
 </script>
 
 <style lang="less">
@@ -34,6 +35,7 @@
         font-family: 'Roboto';
         font-weight: 400;
         text-decoration: none;
+        border: none;
     }
 
     .button:hover {

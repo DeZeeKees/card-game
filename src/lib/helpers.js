@@ -1,9 +1,12 @@
 export const parseNonPOJO = async (obj) => {
+    //parse a non-POJO object into a POJO object
     return await JSON.parse(JSON.stringify(obj));
 }
 
 export const parseCard = async (locals = false, inputCard = false) => {
 
+
+//initialize card object
     let card = {
         id: null,
         name: null,
@@ -16,8 +19,10 @@ export const parseCard = async (locals = false, inputCard = false) => {
         health: null,
     }
 
+    //check if we have the required data
     if(card == false || locals == false) return false;
 
+    //parse the card data
     card.id = inputCard.collectionId;
     card.name = inputCard.name;
     card.description = inputCard.description;
@@ -36,6 +41,7 @@ export const parseCard = async (locals = false, inputCard = false) => {
     card.attack = inputCard.attack;
     card.health = inputCard.health;
 
+    //return the card
     return card;
 
 }
