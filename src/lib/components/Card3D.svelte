@@ -2,7 +2,7 @@
     <Button onClick={handleFullscreen} Style="position: absolute; top:0 ; right: 0;">
             Fullscreen
     </Button>
-    <Canvas>
+    <Canvas on:mousedown={mouseDown} on:mouseleave={mouseUp}>
 
         <T.PerspectiveCamera makeDefault position={[0, 0, 25]} fov={50} >
             <OrbitControls />
@@ -14,9 +14,14 @@
         <T.Group scale={$scale}>
             <T.Mesh>
 
-                <T.BoxGeometry args={[9, 16, 0.1]} />
+                <T.BoxGeometry args={[9, 14, 0.1]} />
                 <T.MeshStandardMaterial color="red" />
 
+            </T.Mesh>
+            <T.Mesh>
+                    
+                    <T.BoxGeometry args={[8, 6, 0.1]} />
+                    <T.MeshStandardMaterial color="blue" />
             </T.Mesh>
         </T.Group>
 
@@ -40,6 +45,14 @@
             e.target.innerText = 'Exit Fullscreen'
         }
     }
+
+    function mouseDown (e) {
+        e.target.style.cursor = 'grabbing'
+    } 
+
+    function mouseUp (e) {
+        e.target.style.cursor = 'grab'
+    }
 </script>
 
 <style>
@@ -47,5 +60,6 @@
         width: 100%;
         height: 100%;
         position: relative;
+        cursor: grab;
     }
 </style>
