@@ -7,7 +7,7 @@
 
             </div>
             <div class="canvasDiv">
-                <Card3D />
+                <Card3D card={card} />
             </div>
         </div>
     {/if}
