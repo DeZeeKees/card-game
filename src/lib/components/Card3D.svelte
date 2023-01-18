@@ -8,7 +8,7 @@
             <OrbitControls />
         </T.PerspectiveCamera>
 
-        <T.SpotLight position.x={100} position.y={50} position.z={50} intensity={1.2} shadow={true} />
+        <T.SpotLight position.x={100} position.y={50} position.z={50} intensity={1.2} />
         <T.SpotLight position.x={-100} position.y={10} position.z={-50} intensity={0.6} />
 
         <!-- card group -->
@@ -18,32 +18,32 @@
             <T.Mesh position.z={-0.05} position.y={-2.5}>
 
                 <T.BoxGeometry args={[9, 14, 0.1]} />
-                <T.MeshStandardMaterial color={cardBackgroundColor} />
+                <T.MeshStandardMaterial color={card.color.background} />
 
             </T.Mesh>
 
             <!-- border-right -->
             <T.Mesh position.z={-0.05} position.y={-2.5} position.x={4.40}>
                 <T.BoxGeometry args={[0.3, 14.2, 0.2]} />
-                <T.MeshStandardMaterial color={cardBorderColor} />
+                <T.MeshStandardMaterial color={card.color.border} />
             </T.Mesh>
 
             <!-- border-left -->
             <T.Mesh position.z={-0.05} position.y={-2.5} position.x={-4.40}>
                 <T.BoxGeometry args={[0.3, 14.2, 0.2]} />
-                <T.MeshStandardMaterial color={cardBorderColor} />
+                <T.MeshStandardMaterial color={card.color.border} />
             </T.Mesh>
 
             <!-- border-top -->
             <T.Mesh position.z={-0.05} position.y={4.45} position.x={0}>
                 <T.BoxGeometry args={[9, 0.3, 0.2]} />
-                <T.MeshStandardMaterial color={cardBorderColor} />
+                <T.MeshStandardMaterial color={card.color.border} />
             </T.Mesh>
 
             <!-- border-bottom -->
             <T.Mesh position.z={-0.05} position.y={-9.45} position.x={0}>
                 <T.BoxGeometry args={[9, 0.3, 0.2]} />
-                <T.MeshStandardMaterial color={cardBorderColor} />
+                <T.MeshStandardMaterial color={card.color.border} />
             </T.Mesh>
 
             <!-- card photo -->
@@ -54,21 +54,21 @@
             <!-- card text -->
             <HTML transform occlude position={{ y: -6, z: 0.05 }}>
                 <div class="cardText">
-                    <h1 class="text h1">{card.name}</h1>
-                    <p class="text descTitle">Description:</p>
-                    <p class="text p1">{card.description}</p>
+                    <h1 class={`${card.color.text} h1`}>{card.name}</h1>
+                    <p class={`${card.color.text} descTitle`}>Description:</p>
+                    <p class={`${card.color.text} p1`}>{card.description}</p>
                     <div class="grid">
                         <div class="gridItem1">
-                            <p class="text p2">Types:</p>
+                            <p class={`${card.color.text} p2`}>Types:</p>
                             {#each card.types as type}
-                                <p class="text p2">{type}</p>
+                                <p class={`${card.color.text} p2`}>{type}</p>
                             {/each}
                         </div>
                         <div class="gridItem2">
-                            <p class="text p2">Cost: {card.cost}</p>
-                            <p class="text p2">Attack: {card.attack}</p>
-                            <p class="text p2">Health: {card.health}</p>
-                            <p class="text p2">Rarity: {card.rarity}</p>
+                            <p class={`${card.color.text} p2`}>Cost: {card.cost}</p>
+                            <p class={`${card.color.text} p2`}>Attack: {card.attack}</p>
+                            <p class={`${card.color.text} p2`}>Health: {card.health}</p>
+                            <p class={`${card.color.text} p2`}>Rarity: {card.rarity}</p>
                         </div>
                     </div>
                 </div>
@@ -90,23 +90,18 @@
 </div>
 
 <script>
-    import { Canvas, OrbitControls, T, useTexture } from '@threlte/core'
+    import { Canvas, OrbitControls, T } from '@threlte/core'
     import { HTML } from '@threlte/extras'
     import { spring } from 'svelte/motion'
     import Button from '$lib/components/Button.svelte'
 
     const scale = spring(1)
 
-    let cardBorderColor = '#DAA520'
-    let cardBackgroundColor = '#F89880'
-    let cardPhotoColor = '#343434'
     let PlaneColor = '#343434'
 
     export let card
 
-    console.log(card.types)
-
-    let cardTexture = "http://localhost:8090/api/files/cards/cjz7r2egi6it8hs/screenshot_2022_03_29_203219_rxYlS4GdkO.png"
+    let cardTexture = `http://localhost:8090/api/files/cards/${card.id}/${card.image}`
 
     function handleFullscreen(e) {
         //check if e.target.parentElement is fullscreen
@@ -132,16 +127,25 @@
         width: 300px;
         height: 250px;
         object-fit: cover;
+        user-select: none;
+        pointer-events: none;
     }
 
     .cardText {
         width: 300px;
         height: 240px;
+        user-select: none;
+        pointer-events: none;
     }
 
     .text {
         font-family: 'Roboto';
         color: #fff;
+    }
+
+    .textBlack {
+        font-family: 'Roboto';
+        color: #000;
     }
 
     .h1 {

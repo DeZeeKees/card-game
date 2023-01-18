@@ -65,7 +65,7 @@
                 text: 'You have successfully logged in.',
                 icon: 'success',
                 showConfirmButton: true,
-                confirmButtonText: 'Login',
+                confirmButtonText: 'Continue',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 customClass: {
