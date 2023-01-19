@@ -51,12 +51,6 @@
             font-size: 30px;
             color: #fff;
         }
-
-        h3 {
-            font-family: 'Roboto';
-            font-size: 20px;
-            color: #fff;
-        }
     }
 
     .card2D {

@@ -25,28 +25,35 @@ export const parseCard = async (locals = false, inputCard = false) => {
     //check if we have the required data
     if(card == false || locals == false) return false;
 
-    //parse the card data
+    //sets the id, name, description and image of the card
     card.id = inputCard.id;
     card.name = inputCard.name;
     card.description = inputCard.description;
     card.image = inputCard.image;
     
+    //gets the types of the card
     const typeArray = await inputCard.type.map( async (typeId, index) => {
         let type = await locals.pb.collection('card_types').getFirstListItem('id="' + typeId + '"');
         return type.type;
     })
+    //sets the types of the card
     card.types = await Promise.all(typeArray);
 
+    //gets the rarity of the card
     const rarity = await locals.pb.collection('card_rarities').getFirstListItem('id="' + inputCard.rarity + '"');
+    //sets the rarity of the card
     card.rarity = rarity.name
     card.rarityValue = rarity.rarity_value
 
+    //sets the cost attack and health of the card
     card.cost = inputCard.cost;
     card.attack = inputCard.attack;
     card.health = inputCard.health;
 
+    //gets the color of the card
     const color = getCardColor(card.rarity);
 
+    //sets the color of the card
     card.color.border = color.cardBorderColor;
     card.color.background = color.cardBackgroundColor;
     card.color.text = color.cardTextColor;
@@ -56,45 +63,62 @@ export const parseCard = async (locals = false, inputCard = false) => {
 
 }
 
+//gets the color of the card based on the rarity
 export const getCardColor = (rarity) => {
     switch(rarity) {
         case 'common':
             return {
                 cardBorderColor: '#DAA520',
-                cardBackgroundColor: '#F89880',
-                cardTextColor: 'text'
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'uncommon':
             return {
-                cardBorderColor: '#1E90FF'
+                cardBorderColor: '#1E90FF',
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'rare':
             return {
-                cardBorderColor: '#00FF00'
+                cardBorderColor: '#00FF00',
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'epic':
             return {
-                cardBorderColor: '#800080'
+                cardBorderColor: '#800080',
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'legendary':
             return {
-                cardBorderColor: '#FFD700'
+                cardBorderColor: '#FFD700',
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'mythical':
             return {
-                cardBorderColor: '#FF1493'
+                cardBorderColor: '#FF1493',
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'lesser god': 
             return {
-                cardBorderColor: '#FFC0CB'
+                cardBorderColor: '#FFC0CB',
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'god':
             return {
-                cardBorderColor: '#FF69B4'
+                cardBorderColor: '#FF69B4',
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'greater god':
             return {
-                cardBorderColor: '#FF4500'
+                cardBorderColor: '#FF4500',
+                cardBackgroundColor: '#fff',
+                cardTextColor: 'textBlack'
             }
         case 'the one above all':
             return {

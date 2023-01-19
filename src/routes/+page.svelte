@@ -10,9 +10,3 @@
     import LoggedOut from "$lib/components/home/LoggedOut.svelte";
     export let data
 </script>
-
-<style lang="less">
-
-
-
-</style>

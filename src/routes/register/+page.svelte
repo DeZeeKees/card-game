@@ -29,7 +29,6 @@
 <script lang="js" type="test/javascript">
     import Input from '$lib/components/Input.svelte';
     import Button from '$lib/components/Button.svelte';
-    import { goto } from '$app/navigation'
     import Swal from 'sweetalert2'
     import '$lib/css/swal.css'
 

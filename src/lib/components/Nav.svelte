@@ -10,6 +10,7 @@
 
     <div class="right">
         {#if Data?.user && Data?.user.username}
+        <Button type="link" href="/new">New</Button>
         <Button type="link" href="/dashboard">Dashboard</Button>
             <Button type="link" href="/logout">Logout</Button>
         {:else}

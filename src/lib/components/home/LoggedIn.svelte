@@ -1,7 +1,17 @@
 <div>
     <div class="textContainer">
+        {#if card != false}
         <h1>Welcome {data?.user.username}</h1>
         <h2>Here is one of your cards</h2>
+        {:else}
+            <h1>Welcome {data?.user.username}</h1>
+            <h2>It looks like you dont have any cards</h2>
+            <h3>Click the button below to get started</h3>
+            <Button type="link" href="/new">
+                Get Started
+            </Button>
+        {/if}
+
     </div>
     {#if card?.id}
         <div class="cardContainer">
@@ -15,6 +25,7 @@
 
 <script>
     import Card3D from '$lib/components/Card3D.svelte'
+    import Button from '$lib/components/Button.svelte'
 
     export let data
     const card = data.cardData
@@ -46,6 +57,12 @@
         h2 {
             font-family: 'Roboto';
             font-size: 30px;
+            color: #fff;
+        }
+
+        h3 {
+            font-family: 'Roboto';
+            font-size: 20px;
             color: #fff;
         }
     }

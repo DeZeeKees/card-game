@@ -12,6 +12,6 @@
 <style lang="less">
     .canvas {
         width: 100%;
-        height: ~"calc(100vh - 60px)";
+        height: ~"calc(100vh - 50px)";
     }
 </style>
