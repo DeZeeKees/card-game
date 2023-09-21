@@ -6,6 +6,9 @@ const config = defineConfig({
 	plugins: [sveltekit()],
 	ssr: {
 		noExternal: ['three', 'troika-three-text']
+	},
+	server: { 
+		host: true
 	}
 });
 
